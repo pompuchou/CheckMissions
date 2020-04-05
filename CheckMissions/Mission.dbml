@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="al" Class="MissionDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=S1\S1;Initial Catalog=al;Persist Security Info=True;User ID=sa" SettingsObjectName="CheckMissions.Properties.Settings" SettingsPropertyName="alConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_schedule" Member="tbl_schedule">
+    <Type Name="tbl_schedule">
+      <Column Name="mid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="smid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iid" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="SDATE" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VIST" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="N" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="remark" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

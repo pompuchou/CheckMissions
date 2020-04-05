@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CheckMissions
 {
@@ -23,6 +14,26 @@ namespace CheckMissions
         public MainWindow()
         {
             InitializeComponent();
+            MissionDataContext dc = new MissionDataContext();
+            MSch.ItemsSource = dc.tbl_schedule;
+        }
+
+        private void MSch_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DataGrid grid = sender as DataGrid;
+                if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                {
+                    DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
+                    CheckMissions.tbl_schedule dr = (CheckMissions.tbl_schedule)dgr.Item;
+                    MessageBox.Show("You Clicked: " + dr.sname + dr.SDATE.ToString() + dr.VIST);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
     }
 }
