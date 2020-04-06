@@ -30,7 +30,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="缺漏或新增個案" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="28" Background="LightYellow" />
-        <DataGrid Name="Person" Margin="6,48,6,6" Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+        <DataGrid Name="DGPerson" Margin="6,48,6,6" Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   FontSize="28">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="1*" Binding="{Binding uid}" IsReadOnly="False" />
@@ -39,17 +39,23 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="停藥, 調整或新增藥物" Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="28" Background="LightGreen" />
-        <DataGrid Name="Drug" Margin="6,48,6,6" Grid.Row="3" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
-                  FontSize="28">
+        <DataGrid Name="DGDrug" Margin="6,48,6,6" Grid.Row="3" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                  FontSize="18">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="1*" Binding="{Binding uid}" IsReadOnly="False" />
+                <DataGridTextColumn Header="ID" Width="1.35*" Binding="{Binding uid}" IsReadOnly="False" />
                 <DataGridTextColumn Header="Name" Width="1*" Binding="{Binding cname}" IsReadOnly="False" />
                 <DataGridTextColumn Header="Medicine" Width="6*" Binding="{Binding r06}" IsReadOnly="False" />
                 <DataGridTextColumn Header="AMT" Width="50" Binding="{Binding TIME_QTY1}" IsReadOnly="False" />
                 <DataGridTextColumn Header="Freq" Width="100" Binding="{Binding TIMES_DAY}" IsReadOnly="False" />
                 <DataGridTextColumn Header="Route" Width="100" Binding="{Binding METHOD}" IsReadOnly="False" />
-                <DataGridTextColumn Header="STATUS" Width="1*" Binding="{Binding COMMENT}" IsReadOnly="False" />
+                <DataGridTextColumn Header="STATUS" Width="3*" Binding="{Binding COMMENT}" IsReadOnly="False" />
             </DataGrid.Columns>
         </DataGrid>
+        <ComboBox Name="CBIns" Margin="6" HorizontalAlignment="Left" Width="90" FontSize="28" MouseDoubleClick="CBIns_MouseDoubleClick"
+                  Grid.Column="1" Grid.Row="0" SelectionChanged="CBIns_SelectionChanged" />
+        <CheckBox Name="ChAll" Margin="120,6,6,6" HorizontalAlignment="Left" VerticalAlignment="Center" Content="ALL" FontSize="28" VerticalContentAlignment="Center"
+                  Grid.Column="1" Grid.Row="0" Checked="ChAll_Checked" Unchecked="ChAll_Checked"/>
+        <TextBox Name="LbInstitut" FontSize="28" Grid.Column="1" Grid.Row="1" Background="LightSalmon" IsReadOnly="True" BorderThickness="0" 
+                 VerticalContentAlignment="Center" />
     </Grid>
 </Window>

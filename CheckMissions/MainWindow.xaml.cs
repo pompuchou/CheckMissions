@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,7 +16,10 @@ namespace CheckMissions
         {
             InitializeComponent();
             MissionDataContext dc = new MissionDataContext();
-            MSch.ItemsSource = dc.tbl_schedule;
+            ChAll.IsChecked = false;
+            CBIns.ItemsSource = from p in dc.p_institute select p.sname;
+            CBIns.SelectedIndex = -1;
+            Refresh_MschDG();
         }
 
         private void MSch_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -25,15 +29,74 @@ namespace CheckMissions
                 DataGrid grid = sender as DataGrid;
                 if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
                 {
+                    MissionDataContext dc = new MissionDataContext();
                     DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
                     CheckMissions.tbl_schedule dr = (CheckMissions.tbl_schedule)dgr.Item;
-                    MessageBox.Show("You Clicked: " + dr.sname + dr.SDATE.ToString() + dr.VIST);
+                    //MessageBox.Show("You Clicked: " + dr.sname + dr.SDATE.ToString() + dr.VIST);
+                    /// 填入資料,來自sname, SDATE, VIST
+                    sp_check_mission_chronic_by_SDATE_VISTResult CH = dc.sp_check_mission_chronic_by_SDATE_VIST(dr.SDATE, dr.VIST).First();
+                    LbInstitut.Text = dr.sname + "第" + dr.smid + "次巡診，共" + CH.total + "張處方，及"+CH.chronic+"張慢箋。";
+                    DGPerson.ItemsSource = dc.sp_check_mission_person_by_sname_SDATE_VIST(dr.sname, dr.SDATE, dr.VIST);
+                    DGDrug.ItemsSource = dc.sp_check_mission_medication_by_sname_SDATE_VIST(dr.sname, dr.SDATE, dr.VIST);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void CBIns_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Refresh_MschDG();
+        }
+
+        private void CBIns_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            cb.SelectedIndex = -1;
+            Refresh_MschDG();
+        }
+
+        private void Refresh_MschDG()
+        {
+            MissionDataContext dc = new MissionDataContext();
+            if (CBIns.SelectedIndex != -1)
+            {
+                // Specific institute
+                string sItem = CBIns.SelectedItem.ToString();
+                if (ChAll.IsChecked == true)
+                {
+                    // all the schedule
+                    MSch.ItemsSource = from p in dc.tbl_schedule where p.sname == sItem select p;
+                }
+                else
+                {
+                    // in recent days
+                    MSch.ItemsSource = from p in dc.tbl_schedule where p.sname == sItem && p.SDATE < DateTime.Now.AddDays(100) && p.SDATE > DateTime.Now.AddDays(-100) select p;
+                }
+            }
+            else
+            {
+                // All institute
+                if (ChAll.IsChecked == true)
+                {
+                    // all the schedule
+                    MSch.ItemsSource = dc.tbl_schedule;
+                }
+                else
+                {
+                    // in recent days
+                    MSch.ItemsSource = from p in dc.tbl_schedule where p.SDATE < DateTime.Now.AddDays(100) && p.SDATE > DateTime.Now.AddDays(-100) select p;
+                }
+            }
+            //DGPerson.ItemsSource = null;
+            //DGDrug.ItemsSource = null;
+        }
+
+        private void ChAll_Checked(object sender, RoutedEventArgs e)
+        {
+            Refresh_MschDG();
         }
     }
 }
