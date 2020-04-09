@@ -33,6 +33,7 @@
         <DataGrid Name="DGPerson" Margin="6,48,6,6" Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   FontSize="28">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="N" Width="0.5*" Binding="{Binding r_id}" IsReadOnly="False" />
                 <DataGridTextColumn Header="ID" Width="1*" Binding="{Binding uid}" IsReadOnly="False" />
                 <DataGridTextColumn Header="Name" Width="1*" Binding="{Binding cname}" IsReadOnly="False" />
                 <DataGridTextColumn Header="Status" Width="2*" Binding="{Binding COMMENT}" IsReadOnly="False" />
@@ -42,6 +43,7 @@
         <DataGrid Name="DGDrug" Margin="6,48,6,6" Grid.Row="3" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   FontSize="18">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="N" Width="0.5*" Binding="{Binding r_id}" IsReadOnly="False" />
                 <DataGridTextColumn Header="ID" Width="1.35*" Binding="{Binding uid}" IsReadOnly="False" />
                 <DataGridTextColumn Header="Name" Width="1*" Binding="{Binding cname}" IsReadOnly="False" />
                 <DataGridTextColumn Header="Medicine" Width="6*" Binding="{Binding r06}" IsReadOnly="False" />

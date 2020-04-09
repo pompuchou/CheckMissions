@@ -84,11 +84,11 @@ namespace CheckMissions
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_check_mission_medication_by_sname_SDATE_VIST")]
-		public ISingleResult<sp_check_mission_medication_by_sname_SDATE_VISTResult> sp_check_mission_medication_by_sname_SDATE_VIST([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string i, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> d, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="VIST", DbType="NVarChar(10)")] string vIST)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_check_mission_chronic_by_SDATE_VIST")]
+		public ISingleResult<sp_check_mission_chronic_by_SDATE_VISTResult> sp_check_mission_chronic_by_SDATE_VIST([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> d, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="VIST", DbType="NVarChar(10)")] string vIST)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), i, d, vIST);
-			return ((ISingleResult<sp_check_mission_medication_by_sname_SDATE_VISTResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), d, vIST);
+			return ((ISingleResult<sp_check_mission_chronic_by_SDATE_VISTResult>)(result.ReturnValue));
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_check_mission_person_by_sname_SDATE_VIST")]
@@ -98,11 +98,11 @@ namespace CheckMissions
 			return ((ISingleResult<sp_check_mission_person_by_sname_SDATE_VISTResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_check_mission_chronic_by_SDATE_VIST")]
-		public ISingleResult<sp_check_mission_chronic_by_SDATE_VISTResult> sp_check_mission_chronic_by_SDATE_VIST([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> d, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="VIST", DbType="NVarChar(10)")] string vIST)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_check_mission_medication_by_sname_SDATE_VIST")]
+		public ISingleResult<sp_check_mission_medication_by_sname_SDATE_VISTResult> sp_check_mission_medication_by_sname_SDATE_VIST([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string i, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> d, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="VIST", DbType="NVarChar(10)")] string vIST)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), d, vIST);
-			return ((ISingleResult<sp_check_mission_chronic_by_SDATE_VISTResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), i, d, vIST);
+			return ((ISingleResult<sp_check_mission_medication_by_sname_SDATE_VISTResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -518,8 +518,134 @@ namespace CheckMissions
 		}
 	}
 	
+	public partial class sp_check_mission_chronic_by_SDATE_VISTResult
+	{
+		
+		private System.Nullable<int> _total;
+		
+		private System.Nullable<int> _chronic;
+		
+		public sp_check_mission_chronic_by_SDATE_VISTResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
+		public System.Nullable<int> total
+		{
+			get
+			{
+				return this._total;
+			}
+			set
+			{
+				if ((this._total != value))
+				{
+					this._total = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chronic", DbType="Int")]
+		public System.Nullable<int> chronic
+		{
+			get
+			{
+				return this._chronic;
+			}
+			set
+			{
+				if ((this._chronic != value))
+				{
+					this._chronic = value;
+				}
+			}
+		}
+	}
+	
+	public partial class sp_check_mission_person_by_sname_SDATE_VISTResult
+	{
+		
+		private System.Nullable<long> _r_id;
+		
+		private string _uid;
+		
+		private string _cname;
+		
+		private string _COMMENT;
+		
+		public sp_check_mission_person_by_sname_SDATE_VISTResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_r_id", DbType="BigInt")]
+		public System.Nullable<long> r_id
+		{
+			get
+			{
+				return this._r_id;
+			}
+			set
+			{
+				if ((this._r_id != value))
+				{
+					this._r_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uid", DbType="VarChar(10)")]
+		public string uid
+		{
+			get
+			{
+				return this._uid;
+			}
+			set
+			{
+				if ((this._uid != value))
+				{
+					this._uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cname", DbType="NVarChar(50)")]
+		public string cname
+		{
+			get
+			{
+				return this._cname;
+			}
+			set
+			{
+				if ((this._cname != value))
+				{
+					this._cname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COMMENT", DbType="NVarChar(50)")]
+		public string COMMENT
+		{
+			get
+			{
+				return this._COMMENT;
+			}
+			set
+			{
+				if ((this._COMMENT != value))
+				{
+					this._COMMENT = value;
+				}
+			}
+		}
+	}
+	
 	public partial class sp_check_mission_medication_by_sname_SDATE_VISTResult
 	{
+		
+		private System.Nullable<long> _r_id;
 		
 		private string _uid;
 		
@@ -537,6 +663,22 @@ namespace CheckMissions
 		
 		public sp_check_mission_medication_by_sname_SDATE_VISTResult()
 		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_r_id", DbType="BigInt")]
+		public System.Nullable<long> r_id
+		{
+			get
+			{
+				return this._r_id;
+			}
+			set
+			{
+				if ((this._r_id != value))
+				{
+					this._r_id = value;
+				}
+			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uid", DbType="VarChar(10)")]
@@ -647,112 +789,6 @@ namespace CheckMissions
 				if ((this._COMMENT != value))
 				{
 					this._COMMENT = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_check_mission_person_by_sname_SDATE_VISTResult
-	{
-		
-		private string _uid;
-		
-		private string _cname;
-		
-		private string _COMMENT;
-		
-		public sp_check_mission_person_by_sname_SDATE_VISTResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uid", DbType="VarChar(10)")]
-		public string uid
-		{
-			get
-			{
-				return this._uid;
-			}
-			set
-			{
-				if ((this._uid != value))
-				{
-					this._uid = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cname", DbType="NVarChar(50)")]
-		public string cname
-		{
-			get
-			{
-				return this._cname;
-			}
-			set
-			{
-				if ((this._cname != value))
-				{
-					this._cname = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COMMENT", DbType="NVarChar(50)")]
-		public string COMMENT
-		{
-			get
-			{
-				return this._COMMENT;
-			}
-			set
-			{
-				if ((this._COMMENT != value))
-				{
-					this._COMMENT = value;
-				}
-			}
-		}
-	}
-	
-	public partial class sp_check_mission_chronic_by_SDATE_VISTResult
-	{
-		
-		private System.Nullable<int> _total;
-		
-		private System.Nullable<int> _chronic;
-		
-		public sp_check_mission_chronic_by_SDATE_VISTResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_total", DbType="Int")]
-		public System.Nullable<int> total
-		{
-			get
-			{
-				return this._total;
-			}
-			set
-			{
-				if ((this._total != value))
-				{
-					this._total = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chronic", DbType="Int")]
-		public System.Nullable<int> chronic
-		{
-			get
-			{
-				return this._chronic;
-			}
-			set
-			{
-				if ((this._chronic != value))
-				{
-					this._chronic = value;
 				}
 			}
 		}

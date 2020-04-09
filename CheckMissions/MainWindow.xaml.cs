@@ -35,7 +35,9 @@ namespace CheckMissions
                     //MessageBox.Show("You Clicked: " + dr.sname + dr.SDATE.ToString() + dr.VIST);
                     /// 填入資料,來自sname, SDATE, VIST
                     sp_check_mission_chronic_by_SDATE_VISTResult CH = dc.sp_check_mission_chronic_by_SDATE_VIST(dr.SDATE, dr.VIST).First();
-                    LbInstitut.Text = dr.sname + "第" + dr.smid + "次巡診，共" + CH.total + "張處方，及"+CH.chronic+"張慢箋。";
+                    LbInstitut.Text = dr.SDATE.ToString("yyyy/MM/dd");
+                    LbInstitut.Text += (from p in dc.p_institute where p.sname == dr.sname select p.fname).First();
+                    LbInstitut.Text += "第" + dr.smid + "次巡診:共" + CH.total + "張處方,其中" + CH.chronic + "張慢箋.";
                     DGPerson.ItemsSource = dc.sp_check_mission_person_by_sname_SDATE_VIST(dr.sname, dr.SDATE, dr.VIST);
                     DGDrug.ItemsSource = dc.sp_check_mission_medication_by_sname_SDATE_VIST(dr.sname, dr.SDATE, dr.VIST);
                 }
