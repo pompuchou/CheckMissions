@@ -56,4 +56,7 @@
       <Column Name="COMMENT" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.sp_check_mission_schedule_N" Method="sp_check_mission_schedule_N">
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

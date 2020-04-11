@@ -100,5 +100,12 @@ namespace CheckMissions
         {
             Refresh_MschDG();
         }
+
+        private void BtnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            MissionDataContext dc = new MissionDataContext();
+            dc.sp_check_mission_schedule_N();
+            Refresh_MschDG();
+        }
     }
 }

@@ -104,6 +104,13 @@ namespace CheckMissions
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), i, d, vIST);
 			return ((ISingleResult<sp_check_mission_medication_by_sname_SDATE_VISTResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.sp_check_mission_schedule_N")]
+		public int sp_check_mission_schedule_N()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_schedule")]
