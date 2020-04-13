@@ -55,14 +55,14 @@
         <DataGrid Name="DGDrug" Margin="6,48,6,6" Grid.Row="3" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   FontSize="18">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="N" Width="0.5*" Binding="{Binding r_id}" IsReadOnly="False" />
-                <DataGridTextColumn Header="ID" Width="1.35*" Binding="{Binding uid}" IsReadOnly="False" />
-                <DataGridTextColumn Header="Name" Width="1*" Binding="{Binding cname}" IsReadOnly="False" />
-                <DataGridTextColumn Header="Medicine" Width="6*" Binding="{Binding r06}" IsReadOnly="False" />
-                <DataGridTextColumn Header="AMT" Width="50" Binding="{Binding TIME_QTY1}" IsReadOnly="False" />
-                <DataGridTextColumn Header="Freq" Width="100" Binding="{Binding TIMES_DAY}" IsReadOnly="False" />
-                <DataGridTextColumn Header="Route" Width="100" Binding="{Binding METHOD}" IsReadOnly="False" />
-                <DataGridTextColumn Header="STATUS" Width="3*" Binding="{Binding COMMENT}" IsReadOnly="False" />
+                <DataGridTextColumn Header="N" Width="0.5*" Binding="{Binding r_id}" IsReadOnly="True" />
+                <DataGridTextColumn Header="ID" Width="1.35*" Binding="{Binding uid}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Name" Width="1*" Binding="{Binding cname}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Medicine" Width="6*" Binding="{Binding r06}" IsReadOnly="True" />
+                <DataGridTextColumn Header="AMT" Width="50" Binding="{Binding TIME_QTY1}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Freq" Width="100" Binding="{Binding TIMES_DAY}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Route" Width="100" Binding="{Binding METHOD}" IsReadOnly="True" />
+                <DataGridTextColumn Header="STATUS" Width="3*" Binding="{Binding COMMENT}" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <ComboBox Name="CBIns" Margin="6" HorizontalAlignment="Left" Width="90" FontSize="28" MouseDoubleClick="CBIns_MouseDoubleClick"
