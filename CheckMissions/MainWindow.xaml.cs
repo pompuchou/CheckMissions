@@ -26,20 +26,30 @@ namespace CheckMissions
         {
             try
             {
+                //讀入資料
                 DataGrid grid = sender as DataGrid;
+                //若資料表存在, 若選擇列存在, 且只選一排
                 if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
                 {
                     MissionDataContext dc = new MissionDataContext();
+                    // 選取一排為 dgr
                     DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
                     CheckMissions.tbl_schedule dr = (CheckMissions.tbl_schedule)dgr.Item;
                     //MessageBox.Show("You Clicked: " + dr.sname + dr.SDATE.ToString() + dr.VIST);
-                    /// 填入資料,來自sname, SDATE, VIST
-                    sp_check_mission_chronic_by_SDATE_VISTResult CH = dc.sp_check_mission_chronic_by_SDATE_VIST(dr.SDATE, dr.VIST).First();
-                    LbInstitut.Text = dr.SDATE.ToString("yyyy/MM/dd");
-                    LbInstitut.Text += (from p in dc.p_institute where p.sname == dr.sname select p.fname).First();
-                    LbInstitut.Text += "第" + dr.smid + "次巡診:共" + CH.total + "張處方,其中" + CH.chronic + "張慢箋.";
-                    DGPerson.ItemsSource = dc.sp_check_mission_person_by_sname_SDATE_VIST(dr.sname, dr.SDATE, dr.VIST);
-                    DGDrug.ItemsSource = dc.sp_check_mission_medication_by_sname_SDATE_VIST(dr.sname, dr.SDATE, dr.VIST);
+                    if (dr.SDATE>DateTime.Now)
+                    {
+                        MessageBox.Show("The date " + dr.SDATE.ToString("yyyy/MM/dd")+" you clicked has not come yet.");
+                    }
+                    else
+                    {
+                        /// 填入資料,來自sname, SDATE, VIST
+                        sp_check_mission_chronic_by_SDATE_VISTResult CH = dc.sp_check_mission_chronic_by_SDATE_VIST(dr.SDATE, dr.VIST).First();
+                        LbInstitut.Text = dr.SDATE.ToString("yyyy/MM/dd");
+                        LbInstitut.Text += (from p in dc.p_institute where p.sname == dr.sname select p.fname).First();
+                        LbInstitut.Text += "第" + dr.smid + "次巡診:共" + CH.total + "張處方,其中" + CH.chronic + "張慢箋.";
+                        DGPerson.ItemsSource = dc.sp_check_mission_person_by_sname_SDATE_VIST(dr.sname, dr.SDATE, dr.VIST);
+                        DGDrug.ItemsSource = dc.sp_check_mission_medication_by_sname_SDATE_VIST(dr.sname, dr.SDATE, dr.VIST);
+                    }
                 }
             }
             catch (Exception ex)

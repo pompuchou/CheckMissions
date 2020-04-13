@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:CheckMissions"
         mc:Ignorable="d"
         Title="周孫元診所機構巡診計畫" Height="450" Width="800" WindowState="Maximized">
+    <Window.Resources>
+        <local:DateToBackgroundConverter x:Key="DateToBackgroundConverter" />
+        <local:DateToForegroundConverter x:Key="DateToForegroundConverter" />
+    </Window.Resources>
     <Grid Margin="6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -20,23 +24,31 @@
         <Label Content="巡診時程" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" FontSize="28" HorizontalContentAlignment="Center" Background="LightBlue" />
         <DataGrid Name="MSch" Margin="6,48,6,6" Grid.RowSpan="4" Grid.Row="0" Grid.Column="0" AutoGenerateColumns="False"
                   CanUserAddRows="False" CanUserDeleteRows="False" MouseDoubleClick="MSch_MouseDoubleClick" FontSize="28">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, Path=Item.SDATE,
+                        Converter={StaticResource DateToBackgroundConverter}}" />
+                    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Item.SDATE,
+                        Converter={StaticResource DateToForegroundConverter}}" />
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="M" Width="2*" Binding="{Binding mid}" IsReadOnly="False" />
-                <DataGridTextColumn Header="S" Width="2*" Binding="{Binding smid}" IsReadOnly="False" />
-                <DataGridTextColumn Header="機構" Width="80" Binding="{Binding sname}" IsReadOnly="False" />
-                <DataGridTextColumn Header="日期" Width="5*" Binding="{Binding SDATE, StringFormat={}{0:yyyy/MM/dd}}" IsReadOnly="False" />
-                <DataGridTextColumn Header="午別" Width="80" Binding="{Binding VIST}" IsReadOnly="False" />
-                <DataGridTextColumn Header="N" Width="2*" Binding="{Binding N}" IsReadOnly="False" />
+                <DataGridTextColumn Header="M" Width="2*" Binding="{Binding mid}" IsReadOnly="True" />
+                <DataGridTextColumn Header="S" Width="2*" Binding="{Binding smid}" IsReadOnly="True" />
+                <DataGridTextColumn Header="機構" Width="80" Binding="{Binding sname}" IsReadOnly="True" />
+                <DataGridTextColumn Header="日期" Width="5*" Binding="{Binding SDATE, StringFormat={}{0:yyyy/MM/dd}}" IsReadOnly="True" />
+                <DataGridTextColumn Header="午別" Width="80" Binding="{Binding VIST}" IsReadOnly="True" />
+                <DataGridTextColumn Header="N" Width="2*" Binding="{Binding N}" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="缺漏或新增個案" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="28" Background="LightYellow" />
         <DataGrid Name="DGPerson" Margin="6,48,6,6" Grid.Row="2" Grid.Column="1" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
                   FontSize="28">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="N" Width="0.5*" Binding="{Binding r_id}" IsReadOnly="False" />
-                <DataGridTextColumn Header="ID" Width="1*" Binding="{Binding uid}" IsReadOnly="False" />
-                <DataGridTextColumn Header="Name" Width="1*" Binding="{Binding cname}" IsReadOnly="False" />
-                <DataGridTextColumn Header="Status" Width="2*" Binding="{Binding COMMENT}" IsReadOnly="False" />
+                <DataGridTextColumn Header="N" Width="0.5*" Binding="{Binding r_id}" IsReadOnly="True" />
+                <DataGridTextColumn Header="ID" Width="1*" Binding="{Binding uid}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Name" Width="1*" Binding="{Binding cname}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Status" Width="2*" Binding="{Binding COMMENT}" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="停藥, 調整或新增藥物" Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Center" FontSize="28" Background="LightGreen" />
